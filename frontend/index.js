@@ -9,8 +9,9 @@ function moduleProject1() {
   //  ✨ add your code here
           const widgets = document.querySelectorAll('section>div')
           // console.log(widgets)
-          widgets.forEach(widget => {
+          widgets.forEach((widget, idx) => {
             widget.classList.add('widget')
+            widget.setAttribute('tabindex', idx + 1 + '')
           })
   // 👉 TASK 2 - Build a "Quote of the Day" widget
   //  ✨ add your code here
