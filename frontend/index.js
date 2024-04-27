@@ -67,8 +67,33 @@ function moduleProject1() {
         const person = people[Math.floor(Math.random() * people.length)]
         const personP = document.createElement('p');
         document.querySelector('.friends').appendChild(personP)
-        personP.textContent = `${person.fname} ${person.lname} was born in ${person.dateOfBirth}`
-        console.log(personP)
+        const year = person.dateOfBirth.split('-')[0]
+        let sentence = `${person.fname} ${person.lname} was born in ${year} and `
+        
+        if (!person.friends.length) {
+          sentence += 'has no friends.'
+        } else {
+          sentence += 'is friends with '
+          for (let i = 0; i < person.friends.length; i++){
+            const friendId = person.friends[i]
+            // console.log(friendId)
+            const friend = people.find(p => p.id === friendId)
+            // console.log(friend)
+            const fullName = `${friend.fname} ${friend.lname}`
+            // console.log(fullName)
+            let isLastIdx = i === person.friends.length - 1
+            let isNextToLastIdx = i === person.friends.length - 2
+            if(isLastIdx) {
+              sentence += `${fullName}.`
+            } else if(isNextToLastIdx) {
+              sentence += `${fullName} and `
+            } else {
+              sentence += `${fullName}, `
+            }
+          }
+        }
+        personP.textContent = sentence
+
   // 👉 TASK 6 - Make it so user can tab through the widgets
   //  ✨ add your code here
 
